@@ -4,7 +4,7 @@ import { beforeAll, describe, expect, it } from 'vitest';
 import { http, WagmiProvider, createConfig } from 'wagmi';
 import { base } from 'wagmi/chains';
 import { mock } from 'wagmi/connectors';
-import SignupButton from './SignupButton';
+import SignupButton from './ConnectButton';
 
 const config = createConfig({
   chains: [base],

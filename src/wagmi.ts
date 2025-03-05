@@ -9,6 +9,7 @@ import { useMemo } from 'react';
 import { http, createConfig } from 'wagmi';
 import { base, baseSepolia } from 'wagmi/chains';
 import { NEXT_PUBLIC_WC_PROJECT_ID } from './config';
+import { farcasterFrame } from '@farcaster/frame-wagmi-connector'
 
 export function useWagmiConfig() {
   const projectId = NEXT_PUBLIC_WC_PROJECT_ID ?? '';
@@ -19,6 +20,7 @@ export function useWagmiConfig() {
   }
 
   return useMemo(() => {
+    coinbaseWallet.preference = 'smartWalletOnly';
     const connectors = connectorsForWallets(
       [
         {
@@ -40,7 +42,7 @@ export function useWagmiConfig() {
       chains: [base, baseSepolia],
       // turn off injected provider discovery
       multiInjectedProviderDiscovery: false,
-      connectors,
+      connectors: [farcasterFrame()],
       ssr: true,
       transports: {
         [base.id]: http(),

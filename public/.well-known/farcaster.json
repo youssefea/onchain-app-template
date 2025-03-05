@@ -1,0 +1,15 @@
+{
+    "accountAssociation": {
+        "header": "eyJmaWQiOjI4OTcwMiwidHlwZSI6ImN1c3RvZHkiLCJrZXkiOiIweEQ4NWIxODdCNzVmY0Q4NDM0MUEwNjk2RDJGQjNkYjU3NUYxYWRFMTgifQ",
+        "payload": "eyJkb21haW4iOiJmZmNlLTJhMTMtMjU0MC0yZWQtOGQwMC0wMC03OTAwLm5ncm9rLWZyZWUuYXBwIn0",
+        "signature": "MHgxYzVmYWUyMDdiZGUyYzJkMWIzZGU1MDNjMjg4ZGU2YjQ5NjM1NTVjNGNkMTI4ZGQ2MDA3YmJmYmNiZjA2ZjIzMzUwZTBiZmQyZTMyYTNhOWQzMTM2MzA2YjZiZjc0NDQ0MTU4NTVhZTIwMDUxNjE5YTI1ODQ0ZmNmZWM0M2EyNjFj"
+    },
+    "frame": {
+        "name": "OnchainKitFrame",
+        "version": "0.0.1",
+        "iconUrl": "https://ffce-2a13-2540-2ed-8d00-00-7900.ngrok-free.app/onchainkit.png",
+        "homeUrl": "https://ffce-2a13-2540-2ed-8d00-00-7900.ngrok-free.app",
+        "splashImageUrl": "https://ffce-2a13-2540-2ed-8d00-00-7900.ngrok-free.app/favicon.ico",
+        "splashBackgroundColor": "#131313"
+    }
+}

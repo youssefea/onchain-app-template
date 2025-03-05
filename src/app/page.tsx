@@ -5,14 +5,42 @@ import WalletWrapper from 'src/components/WalletWrapper';
 import { ONCHAINKIT_LINK } from 'src/links';
 import OnchainkitSvg from 'src/svg/OnchainkitSvg';
 import { useAccount } from 'wagmi';
-import LoginButton from '../components/LoginButton';
-import SignupButton from '../components/SignupButton';
+import ConnectButton from '../components/ConnectButton';
+import FrameSDK from '@farcaster/frame-sdk';
+import farcasterFrame from '@farcaster/frame-wagmi-connector';
+import { PropsWithChildren, useEffect } from 'react';
+import { connect } from 'wagmi/actions';
+import { useWagmiConfig } from 'src/wagmi';
+
+function FarcasterFrameProvider({ children }: PropsWithChildren) {
+  const config = useWagmiConfig()
+  
+  useEffect(() => {
+    const init = async () => {
+      const context = await FrameSDK.context
+
+      // Autoconnect if running in a frame.
+      if (context?.client.clientFid) {
+        connect(config, { connector: farcasterFrame() })
+      }
+
+      // Hide splash screen after UI renders.
+      setTimeout(() => {
+        FrameSDK.actions.ready()
+      }, 500)
+    }
+    init()
+  }, [config])
+
+  return <>{children}</>
+}
 
 export default function Page() {
   const { address } = useAccount();
 
   return (
     <div className="flex h-full w-96 max-w-full flex-col px-1 md:w-[1008px]">
+      <FarcasterFrameProvider>
       <section className="mt-6 mb-6 flex w-full flex-col md:flex-row">
         <div className="flex w-full flex-row items-center justify-between gap-2 md:gap-0">
           <a
@@ -24,8 +52,7 @@ export default function Page() {
             <OnchainkitSvg />
           </a>
           <div className="flex items-center gap-3">
-            <SignupButton />
-            {!address && <LoginButton />}
+            <ConnectButton />
           </div>
         </div>
       </section>
@@ -37,16 +64,17 @@ export default function Page() {
             </p>
           </div>
         </div>
-        {address ? (
-          <TransactionWrapper address={address} />
-        ) : (
+          {address ? (
+            <TransactionWrapper address={address} />
+          ) : (
           <WalletWrapper
             className="w-[450px] max-w-full"
-            text="Sign in to transact"
-          />
-        )}
+            text="Connect to transact"
+            />
+          )}
       </section>
       <Footer />
+      </FarcasterFrameProvider>
     </div>
   );
 }

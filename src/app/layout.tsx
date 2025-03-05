@@ -26,6 +26,22 @@ export const metadata: Metadata = {
     description: 'Built with OnchainKit',
     images: [`${NEXT_PUBLIC_URL}/vibes/vibes-19.png`],
   },
+  other: {
+    'fc:frame': JSON.stringify({
+      version: 'next',
+      imageUrl: 'https://ffce-2a13-2540-2ed-8d00-00-7900.ngrok-free.app/onchainkit.png',
+      button: {
+        title: 'OnchainKit',
+        action: {
+          type: 'launch_frame',
+          name: 'OnchainKitFrame',
+          url: 'https://ffce-2a13-2540-2ed-8d00-00-7900.ngrok-free.app/',
+          splashImageUrl: 'https://ffce-2a13-2540-2ed-8d00-00-7900.ngrok-free.app/favicon.ico',
+          splashBackgroundColor: '#131313'
+        }
+      }
+    })
+  }
 };
 
 export default function RootLayout({
